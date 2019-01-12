@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, FormView
 from webapp.models import UserInfo, Post
-from webapp.forms import PostForm, CreatePostForm
+from webapp.forms import PostForm, CreatePostForm, UserInfoForm
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -43,3 +43,12 @@ class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('post_detail', kwargs={'pk': self.object.pk})
+
+class UserListView(ListView):
+    model = UserInfo
+    template_name = 'user_list.html'
+    form_class = UserInfoForm
+
+class UserDetailView(DetailView):
+    model = UserInfo
+    template_name = 'user_detail.html'

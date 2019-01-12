@@ -13,3 +13,8 @@ class CreatePostForm(forms.ModelForm):
 
     def get_create(self):
         return Post('post_detail', kwargs={'pk':self.pk})
+
+class UserInfoForm(forms.ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = ['user', 'phone', 'avatar']

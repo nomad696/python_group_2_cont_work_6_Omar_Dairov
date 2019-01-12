@@ -4,8 +4,6 @@
 {% block content %}
     <form action="{% url 'post_list' %}" method="GET">
             {% csrf_token %}
-{#            {{ form.search_string.label }}: {{ form.search_string }}#}
-{#            <button type="submit" class="btn btn-primary">Искать</button>#}
     </form>
     {% for post in post_list %}
         <h4><a href="{% url 'post_detail' post.pk %}">{{ post.title }} {{ post.created_at }}</a></h4>
