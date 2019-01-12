@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Публикация{% endblock %}
+
+
+{% block menu %}
+<li><a href="{% url 'post_delete' post.pk %}">Удалить пост</a></li>
+<li><a href="{% url 'post_update' post.pk %}">Изменить пост</a></li>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ post.post}}</h1>
+    <p>{{ post.text }}</p>
+    <h5>Автор: <b>{{ post.user.username }}</b> </h5>
+{% endblock %}
+
+

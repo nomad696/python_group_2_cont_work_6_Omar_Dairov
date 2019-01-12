@@ -12,9 +12,23 @@
 <body>
     <nav class="navbar">
         <ul class="menu">
-            <li><a href="{% url 'login' %}">Войти</a></li>
-            <li><a href="{% url 'logout' %}">Выйти</a></li>
-            {% block menu %}{% endblock %}
+            {% if request.user.is_authenticated %}
+                <li class="nav-item navbar-text">Привет, {{ request.user.username }}!</li>
+                <li class="nav-item">
+                    <a href="{% url 'webauth:logout' %}" class="nav-link">Выход</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'post_list' %}" class="nav-link">На главную</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'post_create' %}" class="nav-link">Добавить публикацию</a>
+                </li>
+                {% block menu %}{% endblock %}
+            {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'webauth:login' %}" class="nav-link">Вход</a>
+                </li>
+            {% endif %}
         </ul>
     </nav>
     <div class="container">{% block content %}{% endblock %}</div>

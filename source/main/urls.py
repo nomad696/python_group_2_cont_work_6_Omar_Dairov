@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from webapp.views import PostListView
-
+from webapp.views import PostListView, PostDetailView, PostCreateView, PostDeleteView, PostUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('webauth/', include('django.contrib.auth.urls')),
-    path('', PostListView.as_view(), name='post_list')
+    path('accounts/', include('webauth.urls', namespace='webauth')),
+    path('', PostListView.as_view(), name='post_list'),
+    path('post/<int:pk>', PostDetailView.as_view(), name='post_detail'),
+    path('post/create', PostCreateView.as_view(), name='post_create'),
+    path('post/<int:pk>/post_delete', PostDeleteView.as_view(), name='post_delete'),
+    path('post/<int:pk>/update', PostUpdateView.as_view(), name='post_update'),
 ]
