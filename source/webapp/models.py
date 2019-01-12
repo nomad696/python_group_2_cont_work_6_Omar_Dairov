@@ -14,7 +14,7 @@ class UserInfo(models.Model):
 
 
 class Post(models.Model):
-    template = models.CharField(max_length=50, verbose_name='Заголовок')
+    title = models.CharField(max_length=50, verbose_name='Заголовок')
     text = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Текст')
     created_at = models.DateField(auto_now_add=True, verbose_name='Время публикации')
     author = models.ForeignKey(UserInfo,  max_length=40, on_delete=models.CASCADE, verbose_name='Автор')
